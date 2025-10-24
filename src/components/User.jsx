@@ -41,16 +41,21 @@ export default function UserManagementPage({ onNavigateToProfile }) {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white/70 backdrop-blur-sm border-b border-gray-200">
-        <div className="w-full max-w-[1280px] mx-auto h-[72px] px-8 py-4 flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center">
-            <div className="w-[84.67px] h-[44.58px] border-[2.7px] border-black flex flex-col items-center justify-center">
-              <div className="text-base font-bold text-black leading-tight">LOGO</div>
-              <div className="text-[10px] text-black leading-tight">EST 2005</div>
+        <div className="w-full h-[72px] px-8 py-4 flex items-center justify-between">
+            {/* Logo - Left Corner */}
+            <div className="flex items-start">
+              <div className="flex flex-col items-center">
+                <div className="border-[2.7px] border-black flex items-center justify-center" style={{width: '84.67px', height: '31.43px', marginTop: '8px', marginLeft: '32px'}}>
+                  <div className="text-base font-bold text-black leading-tight">LOGO</div>
+                </div>
+                <div className="text-black text-center text-[6px] font-bold" style={{marginTop: '2px', marginLeft: '32px'}}>
+                  <div>ESTD</div>
+                  <div>2025</div>
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* Right Icons */}
+          {/* Right Icons - Right Corner */}
           <div className="flex items-center gap-6">
             <button className="text-gray-600 hover:text-gray-900">
               <Headphones size={22} />
@@ -85,19 +90,16 @@ export default function UserManagementPage({ onNavigateToProfile }) {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-200 bg-gray-50">
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
+                  <th className="px-6 py-3 text-left text-gray-600" style={{fontFamily: 'Nunito Sans', fontWeight: 400, fontStyle: 'normal', fontSize: '14px', lineHeight: '20px', letterSpacing: '0%'}}>
                     Sr. No
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
+                  <th className="text-left text-gray-600" style={{width: '400px', height: '44px', paddingRight: '12px', paddingLeft: '12px', fontFamily: 'Nunito Sans', fontWeight: 400, fontStyle: 'normal', fontSize: '14px', lineHeight: '20px', letterSpacing: '0%'}}>
                     User name
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
+                  <th className="px-6 py-3 text-left text-gray-600" style={{fontFamily: 'Nunito Sans', fontWeight: 400, fontStyle: 'normal', fontSize: '14px', lineHeight: '20px', letterSpacing: '0%'}}>
                     E-mail
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                    Contact
-                  </th>
-                  <th className="px-6 py-3 text-right text-sm font-medium text-gray-600">
+                  <th className="px-6 py-3 text-right text-gray-600" style={{fontFamily: 'Nunito Sans', fontWeight: 400, fontStyle: 'normal', fontSize: '14px', lineHeight: '20px', letterSpacing: '0%'}}>
                     Action
                   </th>
                 </tr>
@@ -105,10 +107,9 @@ export default function UserManagementPage({ onNavigateToProfile }) {
               <tbody>
                 {users.map((user, index) => (
                   <tr key={user.id} className="border-b border-gray-200 hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm text-gray-900">{index + 1}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{user.name}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{user.email}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{user.contact}</td>
+                    <td className="pl-6 pr-2 py-4 text-gray-900" style={{fontFamily: 'Nunito Sans', fontWeight: 400, fontStyle: 'normal', fontSize: '14px', lineHeight: '20px', letterSpacing: '0%'}}>{index + 1}</td>
+                    <td className="pr-6 py-4 text-gray-900" style={{fontFamily: 'Nunito Sans', fontWeight: 400, fontStyle: 'normal', fontSize: '14px', lineHeight: '20px', letterSpacing: '0%'}}>{user.name}</td>
+                    <td className="px-6 py-4 text-gray-900" style={{fontFamily: 'Nunito Sans', fontWeight: 400, fontStyle: 'normal', fontSize: '14px', lineHeight: '20px', letterSpacing: '0%'}}>{user.email}</td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-3">
                         <button

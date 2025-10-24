@@ -56,8 +56,20 @@ export default function AddUserModal({ isOpen, onClose, onAddUser, onNavigateToP
             <div className="flex-1" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {/* Name Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Name of the user
+                <label className="block mb-2">
+                  <span style={{ 
+                    width: '93px', 
+                    height: '20px',
+                    fontFamily: 'Nunito Sans', 
+                    fontSize: '12px', 
+                    fontWeight: 400, 
+                    fontStyle: 'normal',
+                    lineHeight: '20px', 
+                    letterSpacing: '0%', 
+                    color: '#777777'
+                  }}>
+                    Name of the user
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -73,8 +85,20 @@ export default function AddUserModal({ isOpen, onClose, onAddUser, onNavigateToP
               {/* Email and Contact Row */}
               <div className="grid grid-cols-2 gap-4" style={{ gap: '10px' }}>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    E-mail
+                  <label className="block mb-2">
+                    <span style={{ 
+                      width: '36px', 
+                      height: '20px',
+                      fontFamily: 'Nunito Sans', 
+                      fontSize: '12px', 
+                      fontWeight: 400, 
+                      fontStyle: 'normal',
+                      lineHeight: '20px', 
+                      letterSpacing: '0%', 
+                      color: '#777777'
+                    }}>
+                      E-mail
+                    </span>
                   </label>
                   <input
                     type="email"
@@ -87,8 +111,20 @@ export default function AddUserModal({ isOpen, onClose, onAddUser, onNavigateToP
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Contact
+                  <label className="block mb-2">
+                    <span style={{ 
+                      width: '42px', 
+                      height: '20px',
+                      fontFamily: 'Nunito Sans', 
+                      fontSize: '12px', 
+                      fontWeight: 400, 
+                      fontStyle: 'normal',
+                      lineHeight: '20px', 
+                      letterSpacing: '0%', 
+                      color: '#777777'
+                    }}>
+                      Contact
+                    </span>
                   </label>
                   <input
                     type="tel"
@@ -108,17 +144,41 @@ export default function AddUserModal({ isOpen, onClose, onAddUser, onNavigateToP
               <button
                 type="button"
                 onClick={handleCancel}
-                className="px-8 py-3 text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors border border-gray-200"
-                style={{ minWidth: '100px' }}
+                className="w-[75px] h-[40px] px-4 py-[10px] rounded-[6px] bg-[#F0EBFF] transition-colors"
+                style={{ gap: '4px' }}
               >
-                Cancel
+                <span style={{ 
+                  width: '43px', 
+                  height: '20px',
+                  fontFamily: 'Nunito Sans', 
+                  fontSize: '14px', 
+                  fontWeight: 400, 
+                  fontStyle: 'normal',
+                  lineHeight: '20px', 
+                  letterSpacing: '0%', 
+                  color: '#6834FF'
+                }}>
+                  Cancel
+                </span>
               </button>
               <button
                 type="submit"
-                className="px-8 py-3 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm"
-                style={{ minWidth: '100px' }}
+                className="w-[59px] h-[40px] px-4 py-[10px] rounded-[6px] bg-[#6834FF] transition-colors"
+                style={{ gap: '4px' }}
               >
-                Add
+                <span style={{ 
+                  width: '27px', 
+                  height: '20px',
+                  fontFamily: 'Nunito Sans', 
+                  fontSize: '14px', 
+                  fontWeight: 400, 
+                  fontStyle: 'normal',
+                  lineHeight: '20px', 
+                  letterSpacing: '0%', 
+                  color: '#FFFFFF'
+                }}>
+                  Add
+                </span>
               </button>
             </div>
           </form>
