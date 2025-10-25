@@ -18,6 +18,17 @@ export default function EducationSkills() {
 
   const handleEducationChange = (e) => {
     const { name, value } = e.target;
+    
+    // Validation for school, degree, course fields - only allow characters
+    if (name === 'school' || name === 'degree' || name === 'course') {
+      // Check if value contains only letters and spaces
+      const isValid = /^[a-zA-Z\s]*$/.test(value);
+      if (!isValid && value !== '') {
+        alert('Please enter characters only');
+        return;
+      }
+    }
+    
     setEducationData(prev => ({
       ...prev,
       [name]: value
@@ -26,6 +37,17 @@ export default function EducationSkills() {
 
   const handleSkillsChange = (e) => {
     const { name, value } = e.target;
+    
+    // Validation for skills and projects fields - only allow characters
+    if (name === 'skills' || name === 'projects') {
+      // Check if value contains only letters and spaces
+      const isValid = /^[a-zA-Z\s]*$/.test(value);
+      if (!isValid && value !== '') {
+        alert('Please enter characters only');
+        return;
+      }
+    }
+    
     setSkillsData(prev => ({
       ...prev,
       [name]: value
@@ -45,7 +67,21 @@ export default function EducationSkills() {
       {/* Education Details Section */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-base font-medium text-gray-800">Education Details</h2>
+          <h2 
+            style={{
+              width: '144px',
+              height: '28px',
+              opacity: 1,
+              fontFamily: 'Nunito Sans',
+              fontWeight: 600,
+              fontSize: '18px',
+              lineHeight: '28px',
+              letterSpacing: '0%',
+              color: 'rgba(35, 35, 35, 1)'
+            }}
+          >
+            Education Details
+          </h2>
           <button
             onClick={() => setIsEditing(!isEditing)}
             className="text-indigo-600 hover:text-indigo-700 transition-colors bg-indigo-50/80 p-1.5 rounded-md"
@@ -54,10 +90,24 @@ export default function EducationSkills() {
           </button>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-2 gap-4 mb-4"
+        style = {{ gap: '10px'}}>
           {/* School/College */}
-          <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">
+          <div> 
+            <label 
+              className="block mb-1"
+              style={{
+                width: '88px',
+                height: '20px',
+                opacity: 1,
+                fontFamily: 'Nunito Sans',
+                fontWeight: 400,
+                fontSize: '12px',
+                lineHeight: '20px',
+                letterSpacing: '0%',
+                color: 'rgba(119, 119, 119, 1)'
+              }}
+            >
               School / College
             </label>
             <input
@@ -67,13 +117,41 @@ export default function EducationSkills() {
               onChange={handleEducationChange}
               placeholder="e.g. Lincoln College"
               disabled={!isEditing}
-              className="w-full px-3 py-2 border border-gray-200 rounded-md text-sm bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 disabled:bg-gray-50 disabled:text-gray-500"
+              style={{
+                width: '542px',
+                height: '40px',
+                paddingTop: '4px',
+                paddingRight: '12px',
+                paddingBottom: '4px',
+                paddingLeft: '12px',
+                opacity: 1,
+                borderWidth: '1px',
+                borderRadius: '6px',
+                backgroundColor: 'rgba(245, 246, 247, 1)',
+                border: '1px solid rgba(223, 226, 231, 1)',
+                outline: 'none'
+              }}
+              className="text-sm text-gray-800 placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 disabled:text-gray-500"
             />
           </div>
 
           {/* Highest degree */}
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">
+            <label 
+              className="block mb-1"
+              style={{
+                width: '156px',
+                height: '20px',
+                gap: '4px',
+                opacity: 1,
+                fontFamily: 'Nunito Sans',
+                fontWeight: 400,
+                fontSize: '12px',
+                lineHeight: '20px',
+                letterSpacing: '0%',
+                color: 'rgba(119, 119, 119, 1)'
+              }}
+            >
               Highest degree or equivalent
             </label>
             <input
@@ -83,15 +161,43 @@ export default function EducationSkills() {
               onChange={handleEducationChange}
               placeholder="e.g. Bachelors in Technology"
               disabled={!isEditing}
-              className="w-full px-3 py-2 border border-gray-200 rounded-md text-sm bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 disabled:bg-gray-50 disabled:text-gray-500"
+              style={{
+                width: '542px',
+                height: '40px',
+                paddingTop: '4px',
+                paddingRight: '12px',
+                paddingBottom: '4px',
+                paddingLeft: '12px',
+                opacity: 1,
+                borderWidth: '1px',
+                borderRadius: '6px',
+                backgroundColor: 'rgba(245, 246, 247, 1)',
+                border: '1px solid rgba(223, 226, 231, 1)',
+                outline: 'none'
+              }}
+              className="text-sm text-gray-800 placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 disabled:text-gray-500"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="flex mb-8 items-start" style={{ marginRight: '80px' }}>
           {/* Course */}
-          <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">
+          <div className="flex-1 mr-4">
+            <label 
+              className="block mb-1"
+              style={{
+                width: '38px',
+                height: '20px',
+                gap: '4px',
+                opacity: 1,
+                fontFamily: 'Nunito Sans',
+                fontWeight: 400,
+                fontSize: '12px',
+                lineHeight: '20px',
+                letterSpacing: '0%',
+                color: 'rgba(119, 119, 119, 1)'
+              }}
+            >
               Course
             </label>
             <input
@@ -101,39 +207,102 @@ export default function EducationSkills() {
               onChange={handleEducationChange}
               placeholder="e.g. Computer science engineering"
               disabled={!isEditing}
-              className="w-full px-3 py-2 border border-gray-200 rounded-md text-sm bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 disabled:bg-gray-50 disabled:text-gray-500"
+              style={{
+                width: '542px',
+                height: '40px',
+                paddingTop: '4px',
+                paddingRight: '12px',
+                paddingBottom: '4px',
+                paddingLeft: '12px',
+                opacity: 1,
+                borderWidth: '1px',
+                borderRadius: '6px',
+                backgroundColor: 'rgba(245, 246, 247, 1)',
+                border: '1px solid rgba(223, 226, 231, 1)',
+                outline: 'none'
+              }}
+              className="text-sm text-gray-800 placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 disabled:text-gray-500"
             />
           </div>
 
           {/* Year of completion */}
-          <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">
+          <div
+            className="ml-20" 
+            style = {{
+            marginLeft: '20px'
+          }}>
+            <label 
+              className="block mb-1"
+              style={{
+                width: '100px',
+                height: '20px',
+                gap: '4px',
+                opacity: 1,
+                fontFamily: 'Nunito Sans',
+                fontWeight: 400,
+                fontSize: '12px',
+                lineHeight: '20px',
+                letterSpacing: '0%',
+                color: 'rgba(119, 119, 119, 1)'
+              }}
+            >
               Year of completion
             </label>
-            <div className="relative">
+            <div className="relative w-[353px]">
               <select
                 name="year"
                 value={educationData.year}
                 onChange={handleEducationChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-200 rounded-md text-sm bg-gray-50 text-gray-800 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 disabled:bg-gray-50 disabled:text-gray-500 appearance-none cursor-pointer"
+                style={{
+                  width: '259px',
+                  height: '40px',
+                  paddingTop: '4px',
+                  paddingRight: '36px',
+                  paddingBottom: '4px',
+                  paddingLeft: '12px',
+                  opacity: 1,
+                  borderWidth: '1px',
+                  borderRadius: '6px',
+                  backgroundColor: 'rgba(245, 246, 247, 1)',
+                  border: '1px solid rgba(223, 226, 231, 1)',
+                  outline: 'none',
+                  appearance: 'none', // 🟩 removes native arrow to show custom one
+                  WebkitAppearance: 'none', // 🟩 Safari fix
+                  MozAppearance: 'none'
+                }}
+                className="text-sm text-gray-800 focus:ring-1 focus:ring-indigo-500 disabled:text-gray-500 appearance-none cursor-pointer"
               >
                 <option value="">YYYY</option>
-                {Array.from({ length: 50 }, (_, i) => 2024 - i).map(year => (
+                {Array.from({ length: 25 }, (_, i) => new Date().getFullYear() - i).map(year => (
                   <option key={year} value={year}>{year}</option>
                 ))}
               </select>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
             </div>
           </div>
 
           {/* Grade */}
-          <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">
+          <div className="flex-1 mr-4 relative"
+                style={{
+                  flex: '0 0 auto',    // <- updated: prevents flex grow/shrink
+                  marginRight: '5px',
+                  transform: 'translateX(-65px)'  // small spacing to Year
+                }}>
+            <label 
+              className="block mb-1"
+              style={{
+                width: '33px',
+                height: '20px',
+                gap: '4px',
+                opacity: 1,
+                fontFamily: 'Nunito Sans',
+                fontWeight: 400,
+                fontSize: '12px',
+                lineHeight: '20px',
+                letterSpacing: '0%',
+                color: 'rgba(119, 119, 119, 1)'
+              }}
+            >
               Grade
             </label>
             <input
@@ -143,7 +312,21 @@ export default function EducationSkills() {
               onChange={handleEducationChange}
               placeholder="Enter here"
               disabled={!isEditing}
-              className="w-full px-3 py-2 border border-gray-200 rounded-md text-sm bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 disabled:bg-gray-50 disabled:text-gray-500"
+              style={{
+                width: '259px',
+                height: '40px',
+                paddingTop: '4px',
+                paddingRight: '12px',
+                paddingBottom: '4px',
+                paddingLeft: '12px',
+                opacity: 1,
+                borderWidth: '1px',
+                borderRadius: '6px',
+                backgroundColor: 'rgba(245, 246, 247, 1)',
+                border: '1px solid rgba(223, 226, 231, 1)',
+                outline: 'none'
+              }}
+              className="text-sm text-gray-800 placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 disabled:text-gray-500"
             />
           </div>
         </div>
@@ -152,7 +335,21 @@ export default function EducationSkills() {
       {/* Skills & Projects Section */}
       <div className="mb-4">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-base font-medium text-gray-800">Skills & Projects</h2>
+          <h2 
+            style={{
+              width: '133px',
+              height: '28px',
+              opacity: 1,
+              fontFamily: 'Nunito Sans',
+              fontWeight: 600,
+              fontSize: '18px',
+              lineHeight: '28px',
+              letterSpacing: '0%',
+              color: 'rgba(35, 35, 35, 1)'
+            }}
+          >
+            Skills & Projects
+          </h2>
           <button
             onClick={() => setIsEditing(!isEditing)}
             className="text-indigo-600 hover:text-indigo-700 transition-colors bg-indigo-50/80 p-1.5 rounded-md"
@@ -164,7 +361,20 @@ export default function EducationSkills() {
         <div className="grid grid-cols-2 gap-4">
           {/* Skills */}
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">
+            <label 
+              className="block mb-1"
+              style={{
+                width: '29px',
+                height: '20px',
+                opacity: 1,
+                fontFamily: 'Nunito Sans',
+                fontWeight: 400,
+                fontSize: '12px',
+                lineHeight: '20px',
+                letterSpacing: '0%',
+                color: 'rgba(119, 119, 119, 1)'
+              }}
+            >
               Skills
             </label>
             <textarea
@@ -174,13 +384,42 @@ export default function EducationSkills() {
               placeholder="Enter here"
               rows={5}
               disabled={!isEditing}
-              className="w-full px-3 py-2 border border-gray-200 rounded-md text-sm bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 disabled:bg-gray-50 disabled:text-gray-500 resize-none"
+              style={{
+                width: '542px',
+                height: '120px',
+                paddingTop: '8px',
+                paddingRight: '12px',
+                paddingBottom: '8px',
+                paddingLeft: '12px',
+                gap: '25px',
+                opacity: 1,
+                borderWidth: '1px',
+                borderRadius: '6px',
+                backgroundColor: 'rgba(245, 246, 247, 1)',
+                border: '1px solid rgba(223, 226, 231, 1)',
+                outline: 'none',
+                resize: 'none'
+              }}
+              className="text-sm text-gray-800 placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 disabled:text-gray-500"
             />
           </div>
 
           {/* Projects */}
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">
+            <label 
+              className="block mb-1"
+              style={{
+                width: '44px',
+                height: '20px',
+                opacity: 1,
+                fontFamily: 'Nunito Sans',
+                fontWeight: 400,
+                fontSize: '12px',
+                lineHeight: '20px',
+                letterSpacing: '0%',
+                color: 'rgba(119, 119, 119, 1)'
+              }}
+            >
               Projects
             </label>
             <textarea
@@ -190,7 +429,23 @@ export default function EducationSkills() {
               placeholder="Enter here"
               rows={5}
               disabled={!isEditing}
-              className="w-full px-3 py-2 border border-gray-200 rounded-md text-sm bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 disabled:bg-gray-50 disabled:text-gray-500 resize-none"
+              style={{
+                width: '542px',
+                height: '120px',
+                paddingTop: '8px',
+                paddingRight: '12px',
+                paddingBottom: '8px',
+                paddingLeft: '12px',
+                gap: '25px',
+                opacity: 1,
+                borderWidth: '1px',
+                borderRadius: '6px',
+                backgroundColor: 'rgba(245, 246, 247, 1)',
+                border: '1px solid rgba(223, 226, 231, 1)',
+                outline: 'none',
+                resize: 'none'
+              }}
+              className="text-sm text-gray-800 placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 disabled:text-gray-500"
             />
           </div>
         </div>

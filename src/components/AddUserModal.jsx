@@ -10,6 +10,31 @@ export default function AddUserModal({ isOpen, onClose, onAddUser, onNavigateToP
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    
+    // Validation for name field - only allow characters
+    if (name === 'name') {
+      // Check if value contains only letters and spaces
+      const isValid = /^[a-zA-Z\s]*$/.test(value);
+      if (!isValid && value !== '') {
+        alert('Please enter characters only');
+        return;
+      }
+    }
+    
+    
+    // Validation for contact - must be exactly 10 digits
+    if (name === 'contact') {
+      const isValid = /^[0-9]*$/.test(value);
+      if (!isValid && value !== '') {
+        alert('Please enter numbers only');
+        return;
+      }
+      if (value.length > 10) {
+        alert('Contact should be exactly 10 digits');
+        return;
+      }
+    }
+    
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -18,13 +43,44 @@ export default function AddUserModal({ isOpen, onClose, onAddUser, onNavigateToP
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Validate contact number before saving
+    if (formData.contact && formData.contact.length !== 10) {
+      alert('Contact must be exactly 10 digits');
+      return;
+    }
+    
     if (formData.name && formData.email && formData.contact) {
-      onAddUser(formData);
+      // Create a complete user object with additional fields for BasicInfo
+      const newUser = {
+        id: Date.now(),
+        name: formData.name,
+        email: formData.email,
+        contact: formData.contact,
+        firstName: formData.name.split(' ')[0] || '',
+        lastName: formData.name.split(' ').slice(1).join(' ') || '',
+        yearOfBirth: '',
+        gender: '',
+        phoneNumber: formData.contact,
+        alternatePhone: '',
+        address: '',
+        pincode: '',
+        domicileState: '',
+        domicileCountry: '',
+        countryCode: '+91'
+      };
+      
+      // Store in localStorage
+      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+      existingUsers.push(newUser);
+      localStorage.setItem('users', JSON.stringify(existingUsers));
+      
+      onAddUser(newUser);
       setFormData({ name: '', email: '', contact: '' });
       onClose();
       // Navigate to My Profile page after adding user
       if (onNavigateToProfile) {
-        onNavigateToProfile();
+        onNavigateToProfile(newUser);
       }
     }
   };
@@ -144,12 +200,10 @@ export default function AddUserModal({ isOpen, onClose, onAddUser, onNavigateToP
               <button
                 type="button"
                 onClick={handleCancel}
-                className="w-[75px] h-[40px] px-4 py-[10px] rounded-[6px] bg-[#F0EBFF] transition-colors"
+                className="w-[75px] h-[40px] px-4 py-[10px] rounded-[6px] bg-[#F0EBFF] transition-colors flex items-center justify-center"
                 style={{ gap: '4px' }}
               >
                 <span style={{ 
-                  width: '43px', 
-                  height: '20px',
                   fontFamily: 'Nunito Sans', 
                   fontSize: '14px', 
                   fontWeight: 400, 
@@ -163,12 +217,10 @@ export default function AddUserModal({ isOpen, onClose, onAddUser, onNavigateToP
               </button>
               <button
                 type="submit"
-                className="w-[59px] h-[40px] px-4 py-[10px] rounded-[6px] bg-[#6834FF] transition-colors"
+                className="w-[59px] h-[40px] px-4 py-[10px] rounded-[6px] bg-[#6834FF] transition-colors flex items-center justify-center"
                 style={{ gap: '4px' }}
               >
                 <span style={{ 
-                  width: '27px', 
-                  height: '20px',
                   fontFamily: 'Nunito Sans', 
                   fontSize: '14px', 
                   fontWeight: 400, 

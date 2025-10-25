@@ -3,30 +3,41 @@ import { Eye, Trash2, Bell, Headphones, User, Plus } from 'lucide-react';
 import AddUserModal from './AddUserModal';
 
 export default function UserManagementPage({ onNavigateToProfile }) {
-  const [users, setUsers] = useState([
-    { id: 1, name: 'Dave Richards', email: 'dave@mail.com', contact: '+1 234-567-8900' },
-    { id: 2, name: 'Abhishek Hari', email: 'hari@mail.com', contact: '+1 234-567-8901' },
-    { id: 3, name: 'Nishta Gupta', email: 'nishta@mail.com', contact: '+1 234-567-8902' }
-  ]);
+  const [users, setUsers] = useState(() => {
+    // Load users from localStorage on component mount
+    const savedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+    if (savedUsers.length === 0) {
+      // If no saved users, use default users
+      const defaultUsers = [
+        { id: 1, name: 'Dave Richards', email: 'dave@mail.com', contact: '+1 234-567-8900' },
+        { id: 2, name: 'Abhishek Hari', email: 'hari@mail.com', contact: '+1 234-567-8901' },
+        { id: 3, name: 'Nishta Gupta', email: 'nishta@mail.com', contact: '+1 234-567-8902' }
+      ];
+      localStorage.setItem('users', JSON.stringify(defaultUsers));
+      return defaultUsers;
+    }
+    return savedUsers;
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = (id) => {
-    setUsers(users.filter(user => user.id !== id));
+    const updatedUsers = users.filter(user => user.id !== id);
+    setUsers(updatedUsers);
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
   };
 
-  const handleView = (id) => {
-    alert(`Viewing user ${id}`);
+  const handleView = (user) => {
+    // Navigate to the specific user's profile page
+    if (onNavigateToProfile) {
+      onNavigateToProfile(user);
+    }
   };
 
   const handleAddUser = (userData) => {
-    const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
-    const newUser = {
-      id: newId,
-      name: userData.name,
-      email: userData.email,
-      contact: userData.contact
-    };
-    setUsers([...users, newUser]);
+    setUsers([...users, userData]);
+    // Update localStorage
+    const updatedUsers = [...users, userData];
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
   };
 
   const openModal = () => {
@@ -113,7 +124,7 @@ export default function UserManagementPage({ onNavigateToProfile }) {
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-3">
                         <button
-                          onClick={() => handleView(user.id)}
+                          onClick={() => handleView(user)}
                           className="text-gray-400 hover:text-gray-600"
                         >
                           <Eye size={18} />
